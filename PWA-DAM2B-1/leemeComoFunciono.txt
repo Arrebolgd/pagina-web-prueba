@@ -1,0 +1,45 @@
+================================================================================
+  GUÍA RÁPIDA: ¿Cómo funciona por dentro nuestra PWA DAM2B?
+================================================================================
+
+Imagina que nuestra aplicación es como una obra de teatro:
+- La Estructura (¿Qué hay?): Las Vistas (SplashScreen.js y MainScreen.js).
+- La Estética (¿Cómo es?): El diseño CSS (styles.css).
+- El Cerebro (¿Qué hace y cuándo?): El Controlador (AppController.js).
+
+
+### 1. ¿Dónde arranca todo? (El punto de partida)
+
+Todo empieza en el archivo `index.html`, pero actúa simplemente como el "armazón" o contenedor vacío (`<div id="app"></div>`).
+
+En cuanto el navegador abre la página, lee esta línea al final del archivo:
+   <script type="module" src="./js/controllers/AppController.js"></script>
+
+En ese preciso segundo, **el HTML le pasa el testigo por completo al Controlador**. ¡A partir de ahí, el director de orquesta es JavaScript!
+
+
+### 2. ¿Quién llama a quién? (El orden de los acontecimientos)
+
+El flujo de ejecución de nuestra app de dos pantallas es una cadena muy sencilla:
+
+1. El navegador carga el `index.html` y arranca el **Controlador**.
+2. El **Controlador** muestra al instante la Pantalla de Carga (**SplashScreen**).
+3. Pasan 3 segundos de cortesía, y el Controlador le ordena a la Vista Principal (**MainScreen**) que se dibuje dentro del contenedor `#app` con el título **PWA DAM2B**.
+4. ¡Listo! La pantalla se actualiza al vuelo sin necesidad de recargar la página web entera (por eso se llama SPA o Single Page Application).
+
+
+### 3. ¿Por qué el CSS (styles.css) se pone en el `index.html`?
+
+Es una gran pregunta que te harás muchas veces:
+Como las pantallas y los botones se crean y se destruyen dinámicamente mediante JavaScript, esos elementos no están fijos en el HTML. 
+
+Por eso, el `styles.css` se carga **una sola vez** al principio en el `index.html`. Se queda en la memoria del navegador como una gran plantilla de diseño. En cuanto JavaScript dibuja un botón o una pantalla nueva, el CSS lo reconoce al instante y le aplica los colores (como nuestro verde azulado tipo Tiffany) y las formas automáticamente.
+
+
+### 4. Los ingredientes mágicos de nuestra PWA
+
+Para que esta web se convierta en una aplicación instalable en el móvil y funcione sin internet, intervienen tres piezas clave:
+
+- El Manifiesto (`manifest.json`): Es el "DNI" de la app. Le dice al móvil cómo se llama ("PWA DAM2B"), quién es el autor, qué colores usar y qué icono en formato PNG (de 512x512 píxeles) debe mostrar en la pantalla de inicio.
+- El Service Worker (`serviceWorker.js`): Es un ayudante invisible que se ejecuta en segundo plano. Hace de puente con internet y guarda los archivos en una "caja fuerte" (caché) para que la app siga funcionando incluso cuando el usuario está sin conexión (por ejemplo, en el metro).
+ - A partir de aquí iremos haciendo crecer la aplicacion con nuevas pantallas, menus, conexiones de acceso a datos, APIs, etc.

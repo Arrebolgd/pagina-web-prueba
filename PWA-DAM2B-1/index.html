@@ -1,0 +1,60 @@
+<!-- 
+================================================================================
+  PROYECTO: PWA DAM2B (Curso 26/27)
+  AUTOR/A: Profesora Macarena Ramos
+  ARCHIVO: index.html
+  
+  DESCRIPCIÓN Y PROPÓSITO:
+  Este archivo es el punto de entrada principal (Shell Document) de la aplicación que estamos desarrollando como PWA.
+  Cumple las siguientes funciones clave:
+  1. Configura la vista adaptativa (viewport) para dispositivos móviles.
+  2. Define metadatos avanzados de SEO (keywords, descripción, autor).
+  3. Enlaza los estilos globales (CSS) y la identidad visual (Icono y Favicon).
+  4. Conecta el manifiesto PWA (manifest.json) para permitir su instalación en el dispositivo móvil.
+  5. Proporciona el contenedor raíz (<div id="app"></div>) para la inyección MVC.
+  6. Inicializa la arquitectura JavaScript modular cargando el AppController.js.
+================================================================================
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA DAM2B | Aplicación Móvil con Arquitectura MVC Modular</title>
+
+    <!-- ================= METADATOS DE SEO BÁSICO Y AVANZADO ================= -->
+    <meta name="description" content="Aplicación web progresiva (PWA) moderna desarrollada con arquitectura MVC modular en ES6 para PWA DAM2B, con soporte offline y diseño adaptable.">
+    <meta name="keywords" content="PWA, Progressive Web App, DAM2B, MVC, JavaScript ES6, Aplicación Móvil, Desarrollo Web">
+    <meta name="author" content="Nombre Alumno (Curso 26/27)">
+    <meta name="robots" content="index, follow">
+    
+    <!-- NOTA DIDÁCTICA: Le dice al navegador web móvil que pinte la barra superior (la de la hora y la batería) de color Tiffany al instante de cargar la web. -->
+    <meta name="theme-color" content="#81D8D0">
+
+    <!-- ================= ENLACES DE ESTILOS, MANIFIESTO E ICONOS ================= -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="manifest" href="./manifest.json">
+    
+    <!-- NOTA DIDÁCTICA: Son los clásicos favicons. El navegador los necesita para poner el iconito en la pestaña del navegador de un ordenador o para los dispositivos Apple (iOS), que a veces son particulares con la lectura del manifiesto y prefieren ver el icono directamente en el HTML. -->
+    <link rel="icon" href="./imagenes/iconoAppdam2b.png" type="image/png">
+    <link rel="apple-touch-icon" href="./imagenes/iconoAppdam2b.png">
+</head>
+
+<body>
+    <div id="app"></div>
+    <!-- ==La siguiente linea hace el REGISTRO DEL SERVICE WORKER ================= -->
+    <!-- El "service worker" es un archivo de JavaScript que sirve de "Proxy" para la aplicación -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./serviceWorker.js')
+                    .then(reg => console.log('OK! Service Worker registrado con éxito:', reg.scope))
+                    .catch(err => console.log('ERROR! Error al registrar el Service Worker:', err));
+            });
+        }
+    </script>
+    <!-- Se llama al fichero que sirve de CONTROLADOR PRINCIPAL (recordad arquitectura MVC) ================= -->
+    <script type="module" src="./js/Controlador/AppController.js"></script>
+</body>
+</html>

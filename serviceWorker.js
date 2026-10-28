@@ -43,7 +43,8 @@ self.addEventListener('install', (evento) => {
            './js/Vista/MainScreen.js',
            './manifest.json',
            './imagenes/logotipoApp.png',
-           './imagenes/iconoAppdam2b.png'
+           './imagenes/iconoAppdam2b.png',
+           './Gifs/Snoopi_Dancing_GIF.gif'
        ];
 
        evento.waitUntil(

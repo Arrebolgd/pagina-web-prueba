@@ -59,6 +59,7 @@ export class MainScreen {
                 <main class="app-content">
                     <h2>Soy un titular: Hola, soy la Pantalla Principal</h2>
                     <p>Soy un parrafo: Aquí pon el  texto que tu quieras.</p>
+                    <p>Prueba de modificación conectado a GitHub.</p>
                     <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjE0NHA3b3NnYndhenVyZzZlbWYxMWQ4YWJqeTVxeTNlMTZ6dDVjMyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/y4PQTcLTYJwOI/giphy.gif" alt="gif" height="auto" width="auto">
                 </main>
             </div>

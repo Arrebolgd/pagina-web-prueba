@@ -59,7 +59,7 @@ export class MainScreen {
                 <main class="app-content">
                     <h2>Soy un titular: Hola, soy la Pantalla Principal</h2>
                     <p>Soy un parrafo: Aquí pon el  texto que tu quieras.</p>
-                    <p>Prueba de modificación conectado a GitHub.</p>
+                    <p>Snoopi_Dancing_GIF.gif</p>
                     <img src="Gifs/Snoopi_Dancing_GIF.gif" alt="Snoopi_Dancing_GIF.gif" height="auto" width="auto">
                 </main>
             </div>

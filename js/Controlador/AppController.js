@@ -15,14 +15,17 @@
 // --- IMPORTACIÓN DE LOS MÓDULOS DE VISTAS ---
 import { SplashScreen } from '../Vista/SplashScreen.js';
 import { MainScreen } from '../Vista/MainScreen.js';
+import { NuevaPantalla } from '../Vista/NuevaPantalla.js';
 
 // --- INSTANCIAS DE LAS VISTAS ---
 const splashView = new SplashScreen();
 const mainView = new MainScreen();
+const newScreen = new NuevaPantalla();
+
 
 // Contenedor raíz donde se inyectará todo el HTML (definido en el index.html)
 const appContainer = document.getElementById('app');
-
+const daysLeftValue = daysLeft();
 /**
  * Función principal de arranque (punto de entrada).
  */
@@ -32,13 +35,25 @@ function iniciarApp() {
 
     // 2. Tras 3 segundos, salta a la Pantalla Principal (Main Screen)
     setTimeout(() => {
-        // Dato que se va a pasar a la vista MainScreen
-        const datoVariable = 124;
-        
+
         // Renderizamos usando el módulo de la pantalla principal y le pasamos el dato directo
-        appContainer.innerHTML = mainView.render(datoVariable);
+        appContainer.innerHTML = mainView.render(daysLeftValue);
+
+        window.addEventListener('click', () => {
+            appContainer.innerHTML = newScreen.render();
+        }, { once: true });
+
     }, 3000);
 }
 
 // Ejecución automática al arrancar la aplicación
 iniciarApp();
+
+function daysLeft(){
+    
+    const objectiveDate = new Date(2027, 1, 28);
+    const today = Date.now();
+    let difDays = Math.ceil((objectiveDate - today) / (1000 * 60 * 60 * 24));
+
+    return difDays;
+} 
